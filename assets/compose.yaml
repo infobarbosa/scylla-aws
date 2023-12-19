@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+  scylla1:
+    container_name: scylla1
+    image: scylladb/scylla:latest
+    restart: always
+    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    volumes:
+      - "./scylla.yaml:/etc/scylla/scylla.yaml"
+      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+    expose:
+      - 9042
+    ports:
+      - "19042:9042"
+
+  scylla2:
+    container_name: scylla2
+    image: scylladb/scylla:latest
+    restart: always
+    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    volumes:
+      - "./scylla.yaml:/etc/scylla/scylla.yaml"
+      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+    expose:
+      - 9042
+    ports:
+      - "29042:9042"
+
+  scylla3:
+    container_name: scylla3
+    image: scylladb/scylla:latest
+    restart: always
+    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    volumes:
+      - "./scylla.yaml:/etc/scylla/scylla.yaml"
+      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+    expose:
+      - 9042
+    ports:
+      - "39042:9042"

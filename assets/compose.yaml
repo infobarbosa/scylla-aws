@@ -6,7 +6,7 @@ services:
     container_name: scylla1
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
+    command: --seeds=scylla1 --smp 1 --overprovisioned 1
     volumes:
       - "/var/lib/scylla/node1:/var/lib/scylla"
       - "/var/log/scylla/node1:/var/log/scylla"
@@ -19,7 +19,7 @@ services:
     container_name: scylla2
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
+    command: --seeds=scylla1 --smp 1 --overprovisioned 1
     depends_on:
       - scylla1
     volumes:
@@ -34,7 +34,7 @@ services:
     container_name: scylla3
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
+    command: --seeds=scylla1 --smp 1 --overprovisioned 1
     depends_on:
       - scylla1
     volumes:

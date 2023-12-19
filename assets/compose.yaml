@@ -6,10 +6,10 @@ services:
     container_name: scylla1
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
     volumes:
-      - "./scylla.yaml:/etc/scylla/scylla.yaml"
-      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+      - "/var/lib/scylla/node1:/var/lib/scylla"
+      - "/var/log/scylla/node1:/var/log/scylla"
     expose:
       - 9042
     ports:
@@ -19,10 +19,10 @@ services:
     container_name: scylla2
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
     volumes:
-      - "./scylla.yaml:/etc/scylla/scylla.yaml"
-      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+      - "/var/lib/scylla/node2:/var/lib/scylla"
+      - "/var/log/scylla/node2:/var/log/scylla"
     expose:
       - 9042
     ports:
@@ -32,10 +32,10 @@ services:
     container_name: scylla3
     image: scylladb/scylla:latest
     restart: always
-    command: --seeds=scylla1,scylla2 --smp 1 --memory 400M --overprovisioned 1
+    command: --seeds=scylla1,scylla2 --smp 1 --overprovisioned 1
     volumes:
-      - "./scylla.yaml:/etc/scylla/scylla.yaml"
-      - "./cassandra-rackdc.properties.dc1:/etc/scylla/cassandra-rackdc.properties"
+      - "/var/lib/scylla/node3:/var/lib/scylla"
+      - "/var/log/scylla/node3:/var/log/scylla"
     expose:
       - 9042
     ports:
